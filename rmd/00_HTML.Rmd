@@ -1,0 +1,52 @@
+---
+title: "Global Tuna Atlas: Nominal catches of tropical tunas"
+author: "Author: [IOTC Secretariat](mailto:IOTC-Secretariat@fao.org)" 
+output:
+  html_document2:
+    css: "../templates/html_template.css"
+    number_sections: FALSE
+    toc: yes
+    toc_float:
+      collapsed: FALSE
+      smooth_scroll: FALSE
+---
+  
+```{r general_options, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  tidy = TRUE,
+  tidy.opts = list(width.cutoff = 60),
+  size = 'small',
+  
+  tab.cap.pre = "Table ",
+  tab.cap.sep = ". ",
+  tab.cap.style ='Table Caption',
+  
+  fig.cap.style = "Caption label",
+  fig.cap.pre = "Fig. ", 
+  fig.cap.sep = ". ",
+  
+  fig.width   = 8,
+  fig.height  = 4.5
+)
+
+knit_hooks$set(
+  inline = function(x) {
+    prettyNum(x, big.mark = "")
+  }
+)
+```
+
+```{css, echo=FALSE}
+.center {
+  display: table;
+  margin-right: auto;
+  margin-left: auto;
+}
+```
+
+```{r child = "01_GTA_NC.Rmd"}
+```
+
+```{r child = "02_GTA_NC_VS_TUCAW.Rmd", eval = FALSE}
+```

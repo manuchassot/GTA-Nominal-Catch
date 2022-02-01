@@ -1,0 +1,90 @@
+
+<div class = 'center'>
+
+```{r NominalCatchRFMO, fig.cap = "Annual time series of cumulative catch (t) of the three principal market tropical tunas (bigeye tuna, skipjack tuna, and yellowfin tuna) 1950-2019", fig.align = 'center'}
+ggplotly(NC_ALL_RFMO[[2]])
+```
+
+</div>
+
+```{r tab.cap = "Annual time series of catch (t) of the three principal market tropical tunas, 1950-2019"}
+datatable(NC_YEAR_RFMO_GEAR_GROUP_SPECIES, rownames = FALSE) %>% formatCurrency('CATCH', currency = "", interval = 3, mark = ",", digits = 0)
+```
+
+## Bigeye tuna (_Thunnus obesus_)
+
+<div class = 'center'>
+
+```{r NominalCatchBarplotBETRFMO, fig.cap = "Annual time series of cumulative catch (t) of bigeye tuna in each Regional Fisheries Management Organisation, 1950-2019"}
+ggplotly(NC_BET_RFMO[[2]])
+```
+
+</div>
+
+```{r NominalCumulativeCatchBETRFMO, fig.cap = "Annual time series of cumulative catch (t) of bigeye tuna by gear group in each Regional Fisheries Management Organisation, 1950-2019", fig.width = 16, fig.height = 9}
+NC_BARPLOT_GEAR_GROUP_RFMO_BET
+```
+
+<div class = 'center'>
+
+```{r NominalCatchLineplotBETRFMO, fig.cap = "Annual time series of catch (t) of bigeye tuna in each Regional Fisheries Management Organisation, 1950-2019"}
+ggplotly(NC_BET_RFMO[[1]])
+```
+
+</div>
+
+```{r NominalIndividualCatchBETRFMO, fig.cap = "Annual time series of cumulative catch (t) of bigeye tuna by gear group in each Regional Fisheries Management Organisation, 1950-2019", fig.width = 16, fig.height = 9}
+NC_LINEPLOT_GEAR_GROUP_RFMO_BET
+```
+
+## Skipjack tuna (_Katsuwonus pelamis_)
+
+<div class = 'center'>
+
+```{r NominalCatchBarplotSKJRFMO, fig.cap = "Annual time series of cumulative catch (t) of skipjack tuna in each Regional Fisheries Management Organisation, 1950-2019"}
+ggplotly(NC_SKJ_RFMO[[2]])
+```
+
+</div>
+
+```{r NominalCumulativeCatchSKJRFMO, fig.cap = "Annual time series of cumulative catch (t) of skipjack tuna by gear group in each Regional Fisheries Management Organisation, 1950-2019", fig.width = 16, fig.height = 9}
+NC_BARPLOT_GEAR_GROUP_RFMO_SKJ
+```
+
+<div class = 'center'>
+
+```{r NominalCatchLineplotSKJRFMO, fig.cap = "Annual time series of catch (t) of skipjack tuna in each Regional Fisheries Management Organisation, 1950-2019"}
+ggplotly(NC_SKJ_RFMO[[1]])
+```
+
+</div>
+
+```{r NominalIndividualCatchSKJRFMO, fig.cap = "Annual time series of cumulative catch (t) of skipjack tuna by gear group in each Regional Fisheries Management Organisation, 1950-2019", fig.width = 16, fig.height = 9}
+NC_LINEPLOT_GEAR_GROUP_RFMO_SKJ
+```
+
+## Yellowfin tuna (_Thunnus albacares_)
+
+<div class = 'center'>
+
+```{r NominalCatchBarplotYFTRFMO, fig.cap = "Annual time series of cumulative catch (t) of yellowfin tuna in each Regional Fisheries Management Organisation, 1950-2019"}
+ggplotly(NC_YFT_RFMO[[2]])
+```
+
+</div>
+
+```{r NominalCumulativeCatchYFTRFMO, fig.cap = "Annual time series of cumulative catch (t) of yellowfin tuna by gear group in each Regional Fisheries Management Organisation, 1950-2019", fig.width = 16, fig.height = 9}
+NC_BARPLOT_GEAR_GROUP_RFMO_YFT
+```
+
+<div class = 'center'>
+
+```{r NominalCatchLineplotYFTRFMO, fig.cap = "Annual time series of catch (t) of yellowfin tuna in each Regional Fisheries Management Organisation, 1950-2019"}
+ggplotly(NC_YFT_RFMO[[1]])
+```
+
+</div>
+
+```{r NominalIndividualCatchYFTRFMO, fig.cap = "Annual time series of catch (t) of yellowfin tuna by gear group in each Regional Fisheries Management Organisation, 1950-2019", fig.width = 16, fig.height = 9}
+NC_LINEPLOT_GEAR_GROUP_RFMO_YFT
+```
