@@ -24,7 +24,8 @@ p_load(
   "RPostgreSQL",
   "data.table",
   "DT",
-  "plotly"
+  "plotly",
+  "ows4R"
   )
 
 print("External libraries initialized!")
