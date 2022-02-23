@@ -38,6 +38,6 @@ NC_YEAR_RFMO_SOURCE_LINEPLOT =
 
 save_plot("../outputs/charts/NC_YEAR_RFMO_SOURCE_LINEPLOT.png", NC_YEAR_RFMO_SOURCE_LINEPLOT, 8, 5)
 
-print("Comparion of GTA vs. TUCAW initialized!")
+print("Comparison of GTA vs. TUCAW initialized!")
 
 

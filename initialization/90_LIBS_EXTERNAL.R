@@ -25,7 +25,8 @@ p_load(
   "data.table",
   "DT",
   "plotly",
-  "ows4R"
+  "ows4R",
+  "ritis"
   )
 
 print("External libraries initialized!")

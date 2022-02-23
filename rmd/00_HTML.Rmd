@@ -45,8 +45,8 @@ knit_hooks$set(
 }
 ```
 
-```{r child = "01_GTA_NC.Rmd"}
+```{r child = "01_GTA_NOMINAL_CATCHES.Rmd"}
 ```
 
-```{r child = "02_GTA_NC_VS_TUCAW.Rmd", eval = FALSE}
+```{r child = "02_GTA_GEOREFERENCED_CATCHES.Rmd", eval = FALSE}
 ```
