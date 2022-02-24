@@ -13,27 +13,25 @@ NC_IATTC_2019[ArteGear == 'NK',                          ArteGear := "UNK"]
 
 # DESCRIPTION OF CONTENTS #### 
 
+## TIME PERIODS ####
+
+
+
+
 ## SPECIES ####
 
-NC_SPECIES_LIST_RFMO = as.data.table(dbGetQuery(con_GTA,
-"SELECT DISTINCT nc.source_authority AS \"RFMO\", nc.species_group AS \"SPECIES_GROUP_CODE\", sg.label AS \"SPECIES_GROUP\", sp.order_ AS \"ORDER\", sp.family AS \"FAMILY\", nc.species AS \"SPECIES_CODE\", sp.label AS \"SPECIES\", sp.scientific_name AS \"SPECIES_SCIENTIFIC\"
-FROM fact_tables.global_nominal_catch_firms_level0 nc
-LEFT JOIN species.species_asfis sp ON (nc.species = sp.code)
-LEFT JOIN species.speciesgroup_tunaatlas sg ON (nc.species_group = sg.code)
-WHERE sp.label NOT LIKE '%nei'
-ORDER BY sg.label, nc.species;"))
+QUERY_NC_SPECIES_LIST_RFMO = read_file("../inputs/queries/GTA_LIST_NC_SPECIES_BY_RFMO.sql")
+NC_SPECIES_LIST_RFMO = as.data.table(dbGetQuery(con_GTA, QUERY_NC_SPECIES_LIST_RFMO))
 
-NC_SPECIES_LIST = unique(NC_SPECIES_LIST_RFMO[, .(SPECIES_GROUP, ORDER, FAMILY, SPECIES_CODE, SPECIES, SPECIES_SCIENTIFIC)])
-NC_SPECIES_LIST_RFMO_TUNA_LIKE = NC_SPECIES_LIST[!SPECIES_GROUP %in% c("Cephalopods", "Other bony fishes", "Rays", "Sharks")]
+# Temp: save lists for ICCAT to check
+write.xlsx(NC_SPECIES_LIST_RFMO[RFMO == "ICCAT" & SPECIES_GROUP %in% c("Temperate tunas", "Tropical tunas", "Neritic tunas", "Billfishes"), .(ORDER, FAMILY, SPECIES_CODE, SPECIES, SPECIES_SCIENTIFIC)], file = "../inputs/data/ICCAT_SPECIES_LIST_TUNA_BILLFISH.xlsx")
 
-NC_SPECIES_NUMBERS_BY_ORDER_RFMO =  NC_SPECIES_LIST_RFMO[, .N, keyby = .(ORDER, RFMO)]
-NC_SPECIES_NUMBERS_BY_ORDER_RFMO_TABLE = dcast.data.table(NC_SPECIES_NUMBERS_BY_ORDER_RFMO, ORDER ~ RFMO, value.var = "N", fill = 0)
 
-NC_SPECIES_NUMBERS_BY_FAMILY_RFMO =  NC_SPECIES_LIST_RFMO[, .N, keyby = .(ORDER, RFMO)]
-NC_SPECIES_NUMBERS_BY_FAMILY_RFMO_TABLE = dcast.data.table(NC_SPECIES_NUMBERS_BY_ORDER_RFMO, ORDER ~ RFMO, value.var = "N", fill = 0)
+# Table by species group
+QUERY_GTA_LIST_NC_SPECIES_BY_RFMO_SPECIES_GROUP_TABLE = read_file("../inputs/queries/GTA_LIST_NC_SPECIES_BY_RFMO_SPECIES_GROUP_TABLE.sql")
+NC_SPECIES_NUMBERS_BY_SPECIES_GROUP_RFMO_TABLE = as.data.table(dbGetQuery(con_GTA, QUERY_GTA_LIST_NC_SPECIES_BY_RFMO_SPECIES_GROUP_TABLE))
 
-NC_SPECIES_NUMBERS_BY_SPECIES_GROUP_RFMO =  NC_SPECIES_LIST_RFMO[, .N, keyby = .(SPECIES_GROUP, RFMO)]
-NC_SPECIES_NUMBERS_BY_SPECIES_GROUP_RFMO_TABLE = dcast.data.table(NC_SPECIES_NUMBERS_BY_SPECIES_GROUP_RFMO, SPECIES_GROUP ~ RFMO, value.var = "N", fill = 0)
+
 
 # ALL SPECIES ####
 NC_ALL = as.data.table(dbGetQuery(con_GTA, "SELECT * FROM fact_tables.global_nominal_catch_firms_level0;"))
