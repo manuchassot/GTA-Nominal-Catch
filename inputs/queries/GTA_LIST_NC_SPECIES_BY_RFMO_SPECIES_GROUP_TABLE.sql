@@ -1,12 +1,17 @@
 WITH SPECIES_RFMOS AS
-(SELECT DISTINCT nc.source_authority AS "RFMO", nc.species_group AS "SPECIES_GROUP_CODE",
+(
+SELECT DISTINCT nc.source_authority AS "RFMO", nc.species_group AS "SPECIES_GROUP_CODE",
  sg.label AS "SPECIES_GROUP", sp.order_ AS "ORDER", sp.family AS "FAMILY",
- nc.species AS "SPECIES_CODE", sp.label AS "SPECIES", sp.scientific_name AS "SPECIES_SCIENTIFIC"
+ nc.species AS "SPECIES_CODE", sp.label AS "SPECIES", sp.scientific_name AS "SPECIES_SCIENTIFIC", SUM(value) AS CATCH
 FROM fact_tables.global_nominal_catch_firms_level0 nc
 LEFT JOIN species.species_asfis sp ON (nc.species = sp.code)
 LEFT JOIN species.speciesgroup_tunaatlas sg ON (nc.species_group = sg.code)
 WHERE sp.label NOT LIKE '%nei'
-ORDER BY sg.label, nc.species
+AND sg.code IN ('BILLFIS', 'BONMACK', 'SCOOT', 'SPMA', 'TUNNER', 'TUNOTH', 'TUNTEMP', 'TUNTROP')
+AND nc.species NOT LIKE 'FRZ'
+GROUP BY nc.source_authority, nc.species_group, sg.label, sp.order_, sp.family, nc.species, sp.label, sp.scientific_name
+HAVING SUM(value)>3500 -- to remove errors in species reported but also removes MSP from the Mediterranean and slender tuna
+ORDER BY sp.family, nc.species
 )
 
 SELECT "SPECIES_GROUP",
