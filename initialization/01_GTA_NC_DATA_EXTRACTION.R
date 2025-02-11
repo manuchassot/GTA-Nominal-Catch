@@ -46,10 +46,6 @@ NC_SPECIES_NUMBERS_BY_SPECIES_GROUP_RFMO_TABLE = as.data.table(dbGetQuery(con_GT
 QUERY_GTA_LIST_NC_SPECIES_BY_RFMO_FAMILY_TABLE = read_file("../inputs/queries/GTA_LIST_NC_SPECIES_BY_RFMO_FAMILY_TABLE.sql")
 NC_SPECIES_NUMBERS_BY_FAMILY_RFMO_TABLE = as.data.table(dbGetQuery(con_GTA, QUERY_GTA_LIST_NC_SPECIES_BY_RFMO_FAMILY_TABLE))
 
-
-
-
-
 # ALL SPECIES ####
 NC_ALL = as.data.table(dbGetQuery(con_GTA, "SELECT * FROM fact_tables.global_nominal_catch_firms_level0;"))
 
@@ -75,6 +71,5 @@ NC_YEAR_RFMO_GEAR_GROUP_SPECIES[GEAR_GROUP_CODE == "LL", GEAR_GROUP := "Longline
 # Factorize gear groups
 NC_YEAR_RFMO_GEAR_GROUP_SPECIES[, GEAR_GROUP_CODE := factor(GEAR_GROUP_CODE, levels = c("UNK", "OTHER", "BB", "PS", "LL"))]
 NC_YEAR_RFMO_GEAR_GROUP_SPECIES[, GEAR_GROUP      := factor(GEAR_GROUP, levels = c("Unknown", "Other", "Pole and line", "Purse seine", "Longline"))]
-
 
 print("Data extracted!")
