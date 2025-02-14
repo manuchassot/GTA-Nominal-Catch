@@ -18,7 +18,7 @@ con_GTA = DBI::dbConnect(
   drv = RPostgreSQL::PostgreSQL(),
   host = "db-tunaatlas.d4science.org",
   user = "tunaatlas_u",
-  password = "21c0551e7ed2911",
+  password = "21c0551e7ed2911", 
   port = "5432",
   dbname = "tunaatlas_sandbox"
 )
@@ -31,6 +31,5 @@ con_GTA = DBI::dbConnect(
 #   port = "5432",
 #   dbname = "tunaatlas"
 # )
-
 
 print("GTA connection initialized!")

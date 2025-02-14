@@ -37,7 +37,7 @@ NC_SPECIES_LIST_RFMO = as.data.table(dbGetQuery(con_GTA, QUERY_NC_SPECIES_LIST_R
 
 # Table by species group
 # Trick in the query to removes the errors of reporting of species with a catch threshold
-# CAUTION: the threshold will remove rare species, including slender tuna and Mediterannean spearfish from the data set
+# CAUTION: the threshold will remove rare species, including slender tuna and Mediterranean spearfish from the data set
 QUERY_GTA_LIST_NC_SPECIES_BY_RFMO_SPECIES_GROUP_TABLE = read_file("../inputs/queries/GTA_LIST_NC_SPECIES_BY_RFMO_SPECIES_GROUP_TABLE.sql")
 
 NC_SPECIES_NUMBERS_BY_SPECIES_GROUP_RFMO_TABLE = as.data.table(dbGetQuery(con_GTA, QUERY_GTA_LIST_NC_SPECIES_BY_RFMO_SPECIES_GROUP_TABLE))
